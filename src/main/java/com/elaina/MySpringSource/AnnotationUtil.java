@@ -159,6 +159,12 @@ public class AnnotationUtil {
         return (T) method.invoke(annotation);
     }
 
+    /**
+     * 获取字段上具有目标注解的注解
+     * @param field 字段
+     * @param annotationType 需要包含的注解
+     * @return 字段上符合条件的注解
+     */
     public static Annotation getAnnotationPresent(Field field, Class<? extends Annotation> annotationType) {
         field.setAccessible(true);
         for (Annotation annotation : field.getDeclaredAnnotations()) {
