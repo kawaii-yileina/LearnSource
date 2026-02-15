@@ -1,9 +1,9 @@
-package com.elaina.MySpringSource;
+package com.elaina.MySpringSource.core.beanDefinition;
 
-import com.elaina.MySpringSource.annotation.Autowired;
-import com.elaina.MySpringSource.annotation.Bean;
-import com.elaina.MySpringSource.annotation.Component;
-import com.elaina.MySpringSource.annotation.PostConstruct;
+import com.elaina.MySpringSource.utils.AnnotationUtil;
+import com.elaina.MySpringSource.core.annotation.Autowired;
+import com.elaina.MySpringSource.core.annotation.Component;
+import com.elaina.MySpringSource.core.annotation.PostConstruct;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Documented;
@@ -24,7 +24,7 @@ import java.util.Objects;
  * @create 2026/1/4 21:45
  */
 @SuppressWarnings("all")
-public class BeanDefinition extends AbstractBeanDefinition{
+public class BeanDefinition extends AbstractBeanDefinition {
     private final Constructor<?> constructor;
     private final List<Method> postConstructMethods;
 

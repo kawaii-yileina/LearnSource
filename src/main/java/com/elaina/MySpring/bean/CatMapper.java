@@ -1,6 +1,6 @@
 package com.elaina.MySpring.bean;
 
-import com.elaina.MySpringSource.annotation.Mapper;
+import com.elaina.MySpringSource.core.annotation.Mapper;
 
 /**
  * ClassName: CatMapper

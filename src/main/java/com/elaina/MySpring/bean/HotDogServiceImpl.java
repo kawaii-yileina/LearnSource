@@ -1,6 +1,6 @@
 package com.elaina.MySpring.bean;
 
-import com.elaina.MySpringSource.annotation.Component;
+import com.elaina.MySpringSource.core.annotation.Component;
 
 /**
  * ClassName: HotDogServiceImpl

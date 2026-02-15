@@ -1,8 +1,8 @@
 package com.elaina.MySpring.bean;
 
-import com.elaina.MySpringSource.annotation.Autowired;
-import com.elaina.MySpringSource.annotation.Component;
-import com.elaina.MySpringSource.annotation.PostConstruct;
+import com.elaina.MySpringSource.core.annotation.Autowired;
+import com.elaina.MySpringSource.core.annotation.Component;
+import com.elaina.MySpringSource.core.annotation.PostConstruct;
 
 /**
  * ClassName: Cat

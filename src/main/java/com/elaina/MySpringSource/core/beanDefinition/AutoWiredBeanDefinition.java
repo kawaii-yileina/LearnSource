@@ -1,11 +1,10 @@
-package com.elaina.MySpringSource;
+package com.elaina.MySpringSource.core.beanDefinition;
 
-import com.elaina.MySpringSource.annotation.Autowired;
+import com.elaina.MySpringSource.utils.AnnotationUtil;
+import com.elaina.MySpringSource.core.annotation.Autowired;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Objects;
 
 /**
  * ClassName: AutoWiredBeanDefinition
@@ -16,7 +15,7 @@ import java.util.Objects;
  * @version 1.0
  * @create 2026/1/8 21:38
  */
-public class AutoWiredBeanDefinition extends AbstractBeanDefinition{
+public class AutoWiredBeanDefinition extends AbstractBeanDefinition {
     private final Field field;
     private final boolean required;
 

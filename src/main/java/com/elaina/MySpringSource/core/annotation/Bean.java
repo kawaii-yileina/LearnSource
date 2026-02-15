@@ -1,4 +1,4 @@
-package com.elaina.MySpringSource.annotation;
+package com.elaina.MySpringSource.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,18 +6,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * ClassName: Resource
+ * ClassName: Bean
  * Package: com.elaina.MySpringSource.annotation
  * Description:
  *
  * @author 灰之魔女-伊蕾娜
  * @version 1.0
- * @create 2026/2/10 22:38
+ * @create 2026/1/11 14:26
  */
-@Target(ElementType.FIELD)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Component
-public @interface Resource {
-    String name() default "";
-    boolean required() default false;
+public @interface Bean {
+    String value() default "";
 }

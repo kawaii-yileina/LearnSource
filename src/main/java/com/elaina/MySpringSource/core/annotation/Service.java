@@ -1,4 +1,4 @@
-package com.elaina.MySpringSource.annotation;
+package com.elaina.MySpringSource.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,15 +6,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * ClassName: Configuration
- * Package: com.elaina.MySpringSource.annotation
+ * ClassName: Service
+ * Package: com.elaina.MySpringSource
  * Description:
  *
  * @author 灰之魔女-伊蕾娜
  * @version 1.0
- * @create 2026/1/11 14:24
+ * @create 2026/1/9 22:33
  */
-@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Configuration {
+@Target(ElementType.TYPE)
+@Component
+public @interface Service {
+    String value() default "";
 }

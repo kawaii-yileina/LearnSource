@@ -1,8 +1,14 @@
-package com.elaina.MySpringSource;
+package com.elaina.MySpringSource.core;
 
-import com.elaina.MySpringSource.annotation.Bean;
-import com.elaina.MySpringSource.annotation.Configuration;
-import com.elaina.MySpringSource.annotation.SpringApplication;
+import com.elaina.MySpringSource.BeanPostProcessor;
+import com.elaina.MySpringSource.core.annotation.Bean;
+import com.elaina.MySpringSource.core.annotation.Configuration;
+import com.elaina.MySpringSource.core.annotation.SpringApplication;
+import com.elaina.MySpringSource.core.beanDefinition.AutoWiredBeanDefinition;
+import com.elaina.MySpringSource.core.beanDefinition.BeanDefinition;
+import com.elaina.MySpringSource.core.beanDefinition.ConfigBeanDefinition;
+import com.elaina.MySpringSource.utils.AnnotationUtil;
+import com.elaina.MySpringSource.utils.StringUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -122,17 +128,7 @@ public class ApplicationContext {
         try {
             Object bean;
             if (type instanceof ConfigBeanDefinition configBeanDefinition) {
-                Object config = getBean(configBeanDefinition.getConfigDefinition().getName());
-                Method beanMethod = configBeanDefinition.getBeanMethod();
-                if (beanMethod.getParameterTypes().length > 0) {
-                    bean = beanMethod.invoke(config, Arrays.stream(beanMethod.getParameterTypes()).map(this::getBean).toArray());
-                } else {
-                    bean = beanMethod.invoke(config);
-                }
-                bean = initializeBean(bean, type);
-                ioc.put(type.getName(), bean);
-                return bean;
-
+                return createCustomBean(configBeanDefinition);
             }else {
                 bean = constructor.newInstance();
             }
@@ -145,6 +141,20 @@ public class ApplicationContext {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Object createCustomBean(ConfigBeanDefinition configBeanDefinition) throws InvocationTargetException, IllegalAccessException {
+        Object bean;
+        Object config = getBean(configBeanDefinition.getConfigDefinition().getName());
+        Method beanMethod = configBeanDefinition.getBeanMethod();
+        if (beanMethod.getParameterTypes().length > 0) {
+            bean = beanMethod.invoke(config, Arrays.stream(beanMethod.getParameterTypes()).map(this::getBean).toArray());
+        } else {
+            bean = beanMethod.invoke(config);
+        }
+        bean = initializeBean(bean, configBeanDefinition);
+        ioc.put(configBeanDefinition.getName(), bean);
+        return bean;
     }
 
     private Object initializeBean(Object bean, BeanDefinition beanDefinition){
@@ -174,7 +184,9 @@ public class ApplicationContext {
         for (AutoWiredBeanDefinition autoWiredBeanDefinition : beanDefinition.getAutowiredBeans()) {
             Object obj;
             if (autoWiredBeanDefinition.getName().isEmpty()) {
-                obj = getBean(autoWiredBeanDefinition.getBeanType());
+                // 优先使用与变量名相同的类
+                obj = getBean(autoWiredBeanDefinition.getBeanType(), StringUtil.firstToLowerCase(autoWiredBeanDefinition.getField().getName()));
+                obj = Objects.isNull(obj) ? getBean(autoWiredBeanDefinition.getBeanType()) : obj;
             } else {
                 obj = getBean(autoWiredBeanDefinition.getName());
             }
@@ -231,7 +243,6 @@ public class ApplicationContext {
                 return FileVisitResult.CONTINUE;
             }
         });
-        System.out.println(classList);
         return classList;
     }
 

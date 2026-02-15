@@ -1,6 +1,4 @@
-package com.elaina.MySpringSource.annotation;
-
-import com.elaina.MySpringSource.annotation.Component;
+package com.elaina.MySpringSource.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,17 +6,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * ClassName: Service
+ * ClassName: Autowired
  * Package: com.elaina.MySpringSource
  * Description:
  *
  * @author 灰之魔女-伊蕾娜
  * @version 1.0
- * @create 2026/1/9 22:33
+ * @create 2026/1/6 22:00
  */
+@Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-@Component
-public @interface Service {
+public @interface Autowired {
     String value() default "";
+    boolean required() default true;
 }

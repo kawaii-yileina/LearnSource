@@ -1,7 +1,7 @@
 package com.elaina.MySpring;
 
 import com.elaina.MySpringSource.BeanPostProcessor;
-import com.elaina.MySpringSource.annotation.Component;
+import com.elaina.MySpringSource.core.annotation.Component;
 
 /**
  * ClassName: MyBeanPostProcessor

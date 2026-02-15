@@ -2,18 +2,14 @@ package com.elaina.MySpring;
 
 import com.elaina.MySpring.bean.*;
 import com.elaina.MySpring.collections.MyLinkedList;
-import com.elaina.MySpringSource.AnnotationUtil;
-import com.elaina.MySpringSource.ApplicationContext;
-import com.elaina.MySpringSource.annotation.Autowired;
-import com.elaina.MySpringSource.annotation.Bean;
-import com.elaina.MySpringSource.annotation.Resource;
-import com.elaina.MySpringSource.annotation.SpringApplication;
+import com.elaina.MySpringSource.core.ApplicationContext;
+import com.elaina.MySpringSource.core.annotation.Autowired;
+import com.elaina.MySpringSource.core.annotation.Bean;
+import com.elaina.MySpringSource.core.annotation.SpringApplication;
+import com.elaina.MySpringSource.utils.StringUtil;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * ClassName: Application
@@ -35,7 +31,7 @@ public class Application {
         System.out.println("dogs"+dog);
         System.out.println(applicationContext.getBean(Encoder.class).type);
         System.out.println(applicationContext.getBean("encoder"));
-
+        System.out.println(StringUtil.firstToLowerCase("BabBaa"));
         System.out.println("#################################\n\n\n\n\n\n");
 //        new LinkedList<>()
         MyLinkedList<Integer> list = new MyLinkedList<>();

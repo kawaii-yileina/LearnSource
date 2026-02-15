@@ -1,7 +1,7 @@
 package com.elaina.MySpring.bean;
 
-import com.elaina.MySpringSource.annotation.Autowired;
-import com.elaina.MySpringSource.annotation.Service;
+import com.elaina.MySpringSource.core.annotation.Autowired;
+import com.elaina.MySpringSource.core.annotation.Service;
 
 /**
  * ClassName: DogServiceImpl

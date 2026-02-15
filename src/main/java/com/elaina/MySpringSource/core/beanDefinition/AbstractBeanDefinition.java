@@ -1,4 +1,4 @@
-package com.elaina.MySpringSource;
+package com.elaina.MySpringSource.core.beanDefinition;
 
 /**
  * ClassName: AbstractBeanDefinition
@@ -13,11 +13,11 @@ public abstract class AbstractBeanDefinition {
     protected String name;
     protected Class<?> beanType;
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 
-    protected Class<?> getBeanType() {
+    public Class<?> getBeanType() {
         return beanType;
     }
 }
